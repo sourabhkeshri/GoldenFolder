@@ -1,0 +1,11 @@
+static int find(int N){
+        String s=Integer.toBinaryString(N);
+        
+        char a=s.charAt(0);
+        s=s.substring(1,s.length());
+        StringBuffer sb =  new StringBuffer(s);
+        sb.append(a);
+        int ans=Integer.parseInt(sb.toString(),2);
+        return ans;
+        
+    }

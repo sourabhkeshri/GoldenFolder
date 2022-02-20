@@ -1,0 +1,28 @@
+Input:
+N = 3, M = 3
+mat[][] = 3 30 38 
+         44 52 54 
+         57 60 69
+X = 62
+Output:
+0
+Explanation:
+62 is not present in the
+matrix, so output is 0
+------------------
+go top right 
+
+-----------
+class Sol
+{
+    public static int matSearch(int a[][], int N, int M, int X)
+    {
+        int i=0,j=M-1;
+        while(i>=0 && j>=0 && i<N && j<M){
+            if(X>a[i][j]) i++;//go down
+            else if(X<a[i][j]) j--;//go left
+            else return 1;
+        }
+        return 0;
+    }
+}

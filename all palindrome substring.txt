@@ -1,0 +1,21 @@
+class Solution
+{
+    int c=0;
+    public int CountPS(String s, int n)
+    {
+        
+        for(int i=0;i<n;i++){
+            expand(s,i,i);
+            expand(s,i,i+1);
+        }
+        return (c-n);
+    }
+    
+    public void expand(String s,int l,int r){
+        while(l>=0 && r<s.length() && s.charAt(l)==s.charAt(r)){
+            c++;
+            l--;
+            r++;
+        }
+    }
+}

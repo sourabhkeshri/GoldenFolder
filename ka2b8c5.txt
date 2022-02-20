@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+		
+		String s="ka2b2c3";
+		String ans="";
+		String t="";
+		int f=0;
+		for(int i=0;i<s.length();) {
+			t="";
+			f=0;
+			while(i<s.length() && s.charAt(i)>='a' && s.charAt(i)<='z') {
+				t+=s.charAt(i);
+				i++;
+			}
+			
+			while(i<s.length() && s.charAt(i)>='1' && s.charAt(i)<='9') {
+				f=f*10+s.charAt(i)-'0';
+				i++;
+			}
+			
+			
+			for(int j=1;j<=f;j++) {
+				ans+=t;
+			}
+			if(f==0) {
+				ans+=t;
+			}
+			
+		}
+		
+		System.out.println(ans);
+		
+		
+	}

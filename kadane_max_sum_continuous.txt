@@ -1,0 +1,15 @@
+int maxSubarraySum(int a[], int n){
+        int osum= Integer.MIN_VALUE;
+        int csum=0;
+        for(int i=0;i<n;i++){
+            csum+=a[i];
+            if(csum>osum){
+                osum=csum;
+            }
+            if(csum<0){
+                csum=0;
+            }
+        }
+        return osum;
+        
+    }

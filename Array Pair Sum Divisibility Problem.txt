@@ -1,0 +1,54 @@
+Given an array of integers and a number k, write a function that returns true if given array can be divided into pairs such that sum of every pair is divisible by k.
+
+Input : arr = [9, 5, 7, 3], k = 6
+Output: True
+Explanation: {(9, 3), (5, 7)} is a 
+possible solution. 9 + 3 = 12 is divisible
+by 6 and 7 + 5 = 12 is also divisible by 6.
+--------------
+
+1)create a frq map of remainders
+2)3 cases for rem frequency:
+a.rem==0 even
+b.2*rem==k
+c.else
+-----------------------
+class Solution {
+    public boolean canPair(int[] a, int k) {
+        HashMap<Integer,Integer>hm = new HashMap<>();
+        for(int aa:a){
+            int r=aa%k;
+            int of=hm.getOrDefault(r,0); //old freq
+            hm.put(r,of+1);
+            
+        }
+        
+        for(int aa:a){
+            int r=aa%k;
+            //0
+            if(r==0){
+                int fq=hm.get(r);
+                if(fq%2!=0){
+                    return false;
+                }
+            }
+            //k/2
+            else if(2*r==k){
+                int fq=hm.get(r);
+                if(fq%2!=0){
+                    return false;
+                }
+            }
+            else{
+                int fq1=hm.get(r);
+                int fq2=hm.getOrDefault(k-r,0);
+                if(fq1!=fq2){
+                    return false;
+                }
+            }
+        }
+        return true;
+        
+        
+    }
+}

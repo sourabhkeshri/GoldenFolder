@@ -1,0 +1,64 @@
+Input:
+N = 6
+start[] = {1,3,0,5,8,5}
+end[] =  {2,4,6,7,9,9}
+Output: 
+4
+Explanation:
+Maximum four meetings can be held with
+given start and end timings.
+The meetings are - (1, 2),(3, 4), (5,7) and (8,9)
+------------------------------------------------------
+
+
+
+class Meeting{
+    
+    int start;
+    int end;
+    int pos;
+    
+    public Meeting(int s,int e,int p){
+        this.start=s;
+        this.end=e;
+        this.pos=p;
+    }
+    
+    
+}
+
+
+
+class MyComaprator implements Comparator<Meeting>{
+    @Override
+    public int compare(Meeting m1,Meeting m2){
+        if(m1.end<m2.end) return -1;
+        if(m1.end>m2.end) return 1;
+        if(m1.pos<m2.pos) return -1;
+        return 1;
+    }
+}
+class Solution 
+{
+    //Function to find the maximum number of meetings that can
+    //be performed in a meeting room.
+    public static int maxMeetings(int start[], int end[], int n)
+    {
+        ArrayList<Meeting>al=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            al.add(new Meeting(start[i],end[i],i+1));
+        }
+        MyComaprator mc = new MyComaprator();
+        Collections.sort(al,mc);
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add(al.get(0).pos);
+        int limit = al.get(0).end;
+        for(int i=1;i<n;i++){
+            if(al.get(i).start>limit){
+                ans.add(al.get(i).pos);
+                limit=al.get(i).end;
+            }
+        }
+       return ans.size(); 
+    }
+}

@@ -1,0 +1,61 @@
+Given an array of non-negative integers, and a value sum, determine if there is a subset of the given set with sum equal to given sum. 
+
+
+Example 1:
+
+Input:
+N = 6
+arr[] = {3, 34, 4, 12, 5, 2}
+sum = 9
+Output: 1 
+Explanation: Here there exists a subset with
+sum = 9, 4+3+2 = 9.
+Example 2:
+
+Input:
+N = 6
+arr[] = {3, 34, 4, 12, 5, 2}
+sum = 30
+Output: 0 
+Explanation: There is no subset with sum 30.
+------------------------------------------
+peepcode
+divide in 4 parts
+then focus on last else part
+
+class Solution{
+
+
+    static Boolean isSubsetSum(int n, int a[], int sum){
+        
+        boolean [][]dp = new boolean[n+1][sum+1];
+        
+        for(int i=0;i<dp.length;i++){
+            for(int j=0;j<dp[0].length;j++){
+                if(i==0 && j==0){
+                    dp[i][j]=true;
+                }else if(i==0){
+                    dp[i][j]=false;
+                }else if(j==0){
+                    dp[i][j]=true;
+                }else{
+                    if(dp[i-1][j]==true){
+                        dp[i][j]=true;
+                    }
+                    
+                    else{
+                        
+                        int val=a[i-1];
+                        if(j>=val){
+                            if(dp[i-1][j-val]==true){
+                            dp[i][j]=true;
+                            }
+                        }       
+                        
+                    }
+                }
+            }
+        }
+        return dp[a.length][sum];
+    }
+}

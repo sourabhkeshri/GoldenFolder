@@ -1,0 +1,30 @@
+
+    List<String>al=new ArrayList<>();
+    public List<String> find_permutation(String s) {
+        // Code here
+        int len=s.length();
+        helper(s,0,len-1);
+        Collections.sort(al);
+        return al;
+    }
+    
+    public void helper(String s,int l,int r){
+        if(l==r)
+            al.add(s);
+        else{
+            for(int i=l;i<=r;i++){
+                s=swap(s,l,i);
+                helper(s,l+1,r);
+                s=swap(s,l,i);
+            }
+        }
+    }
+    
+    public String swap(String s,int i,int j){
+        char[]a=s.toCharArray();
+        char t=a[i];
+        a[i]=a[j];
+        a[j]=t;
+        
+        return String.valueOf(a);
+    }
