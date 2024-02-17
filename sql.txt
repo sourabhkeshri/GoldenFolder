@@ -1,2 +1,2 @@
 select sal from EMP order by sal DESC LIMIT 0,1
-//0=starts with , print number of rows
+//0=starts with , print number of rows..
