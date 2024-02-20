@@ -1,0 +1,3 @@
+Map<Integer,List<Emp>> groupByAge = emps.stream().collect(Collectors.groupingBy(e->e.getAge()));
+
+List<Emp> sortBasedOnAge = emps.stream().sorted(Comparator.compairing(e->e.getAge())).collect(Collectors.toList());
